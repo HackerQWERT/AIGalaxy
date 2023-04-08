@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AIGalaxy.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AIGalaxy"
+    xmlns:WindowsMauiPages="clr-namespace:AIGalaxy.WindowsMauiPages"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.BackgroundColor="#011627">
+    
+    <Shell.FlyoutHeader>
+        <StackLayout Orientation="Horizontal" Padding="10,20">
+            <Image Source="dotnet_bot.png" WidthRequest="50" HeightRequest="50" Aspect="AspectFit"/>
+            <Label Text="My App" TextColor="Black" FontSize="Large" VerticalOptions="Center"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+
+    <!--<FlyoutItem Title="AIGenerate" Icon="dotnet_bot.png">
+        <Tab Title="AIGenerate">
+            <ShellContent Title="AIGenerate"
+                ContentTemplate="{DataTemplate WindowsMauiPages:AIGenerateView}" />
+        </Tab>
+    </FlyoutItem>-->
+    
+</Shell>

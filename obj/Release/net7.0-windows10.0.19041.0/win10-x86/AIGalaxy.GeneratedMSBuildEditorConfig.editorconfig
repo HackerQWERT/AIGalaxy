@@ -1,0 +1,122 @@
+is_global = true
+build_property.TargetFramework = net7.0-windows10.0.19041.0
+build_property.TargetPlatformMinVersion = 10.0.17763.0
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 9A19103F-16F7-4668-BE54-9A1E7A4F7556
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = AIGalaxy
+build_property.RootNamespace = AIGalaxy
+build_property.ProjectDir = C:\Users\Dark\Documents\Vs\AIGalaxy\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\Dark\Documents\Vs\AIGalaxy
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/MauiPages/AIChatView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.MauiPages.AIChatView.xaml
+build_metadata.AdditionalFiles.TargetPath = MauiPages\AIChatView.xaml
+build_metadata.AdditionalFiles.RelativePath = MauiPages\AIChatView.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/MauiPages/AIGenerateView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.MauiPages.AIGenerateView.xaml
+build_metadata.AdditionalFiles.TargetPath = MauiPages\AIGenerateView.xaml
+build_metadata.AdditionalFiles.RelativePath = MauiPages\AIGenerateView.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/MauiPages/AIVaryView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.MauiPages.AIVaryView.xaml
+build_metadata.AdditionalFiles.TargetPath = MauiPages\AIVaryView.xaml
+build_metadata.AdditionalFiles.RelativePath = MauiPages\AIVaryView.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/MauiPages/WindowsAIGalaxyView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = AIGalaxy.MauiPages.WindowsAIGalaxyView.xaml
+build_metadata.AdditionalFiles.TargetPath = MauiPages\WindowsAIGalaxyView.xaml
+build_metadata.AdditionalFiles.RelativePath = MauiPages\WindowsAIGalaxyView.xaml
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/BlazorPages/WindowsAccount.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yUGFnZXNcV2luZG93c0FjY291bnQucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/BlazorPages/WindowsAIChat.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yUGFnZXNcV2luZG93c0FJQ2hhdC5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/BlazorPages/WindowsAIGenerate.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yUGFnZXNcV2luZG93c0FJR2VuZXJhdGUucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/BlazorPages/WindowsAIVary.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yUGFnZXNcV2luZG93c0FJVmFyeS5yYXpvcg==
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/BlazorPages/WindowsIndex.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = Qmxhem9yUGFnZXNcV2luZG93c0luZGV4LnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/Shared/WindowsMainLayout.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFdpbmRvd3NNYWluTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/Shared/WindowsNavMenu.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFdpbmRvd3NOYXZNZW51LnJhem9y
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/WindowsMain.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = V2luZG93c01haW4ucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Dark/Documents/Vs/AIGalaxy/_Imports.razor]
+build_metadata.AdditionalFiles.GenKind = 
+build_metadata.AdditionalFiles.ManifestResourceName = 
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.RelativePath = 
+build_metadata.AdditionalFiles.CssScope = 

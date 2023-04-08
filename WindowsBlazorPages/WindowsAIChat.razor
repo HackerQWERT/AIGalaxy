@@ -1,0 +1,258 @@
+﻿@page "/WindowsAIChat"
+@using System.Diagnostics;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using Microsoft.AspNetCore.SignalR.Client;
+
+@inject ISnackbar Snackbar
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+@inject ThemeService ThemeService
+@*@implements IAsyncDisposable*@
+@inject IDialogService DialogService
+
+
+
+<PageTitle>AI聊天</PageTitle>
+
+@code {
+    public class ChatRequestJson
+    {
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)] public string model { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)] public List<Message> messages { get; set; }
+
+
+    }
+    public class Message
+    {
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)] public string role { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)] public string content { get; set; }
+    }
+}
+
+@code {
+
+
+    private bool LastThemeServiceIsDarkMode;
+
+    private async Task ChangeThemeAsync()
+    {
+        while (true)
+        {
+            await Task.Delay(100);
+            if (ThemeService.IsDarkMode != LastThemeServiceIsDarkMode)
+            {
+                await InvokeAsync(() => StateHasChanged());
+                LastThemeServiceIsDarkMode = ThemeService.IsDarkMode;
+
+
+            }
+        }
+
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        LastThemeServiceIsDarkMode = ThemeService.IsDarkMode;
+        Task.Run(() => ChangeThemeAsync());
+
+        App.AIGalaxyConnection.On<string>(SignalR.SignalRMethod.ClientMethod.AIChat, async (content) =>
+        {
+            try
+            {
+                if (content is null)
+                {
+                    await InvokeAsync(async () =>
+                    {
+                        bool? result = await DialogService.ShowMessageBox("Warning", "网络异常!", yesText: "OK!", cancelText: "Cancel");
+                    });
+                    messageList.RemoveAt(messageList.Count);
+                    chatRequestJson.messages.RemoveAt(chatRequestJson.messages.Count);
+                    return;
+                }
+                messageList.Add(new ChatMessage { Text = content, Id = messageList.Count.ToString(), IsMe = false });
+                chatRequestJson.messages.Add(new Message { role = "assistant", content = content });
+
+                await JS.InvokeVoidAsync("ScrollToText", "MudPaperId", "ChatViewBottom");
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                bool? result = await DialogService.ShowMessageBox("Warning", "Something Error!", yesText: "OK!", cancelText: "Cancel");
+            }
+            finally
+            {
+                processing = false;
+                await InvokeAsync(() => StateHasChanged());
+
+            }
+
+
+        });
+
+        ////http://43.155.129.173:9999/ChatHub
+        //string url = $"{SignalR.WebsocketUrl}:{SignalR.Port}/{SignalR.AIChatHub}";
+        //chatHubConnection = new HubConnectionBuilder()
+        //        .WithUrl(url)
+        //        .WithAutomaticReconnect()
+        //        .Build();
+
+        //chatHubConnection = new HubConnectionBuilder()
+        //    .WithUrl(Navigation.ToAbsoluteUri(("/"+SignalR.AIChatHub)))
+        //    .WithAutomaticReconnect()
+        //    .Build();
+
+        //try
+        //{
+        //    await chatHubConnection.StartAsync();
+
+        //}
+        //catch (HttpRequestException ex)
+        //{
+        //    bool? result = await DialogService.ShowMessageBox(
+        //    "Warning",
+        //     ex.Message,
+        //    yesText: "OK!", cancelText: "Cancel");
+        //}
+        //catch (Exception ex)
+        //{
+        //    Debug.WriteLine(ex.Message);
+        //}
+    }
+
+    //public bool IsConnected =>
+    //    App.AIGalaxyConnection?.State == HubConnectionState.Connected;
+
+    //public async ValueTask DisposeAsync()
+    //{
+    //    if (App.AIGalaxyConnection is not null)
+    //    {
+    //        await App.AIGalaxyConnection.DisposeAsync();
+    //    }
+    //}
+}
+
+
+
+<MudText Typo="Typo.h1">AI聊天</MudText>
+<br />
+<br />
+
+<MudPaper id="MudPaperId" Elevation="4" style="height:510px;overflow:auto;" Class="d-flex flex-column justify-space-between py-6">
+    <div>
+        @foreach (var message in messageList)
+        {
+            message.Text = message.Text.Replace("```", "");
+            <div style="display: flex; justify-content: @(message.IsMe ? "flex-end" : "flex-start"); margin-bottom: 10px;margin-left:10px;margin-right:10px;">
+                @if (!ThemeService.IsDarkMode)
+                {
+                    <div style="white-space: pre-wrap;max-width: 70%; background-color: @(message.IsMe ? "#a8dadc" : "#e0e0e0"); border-radius: 10px; padding: 10px; overflow-wrap: break-word;">
+                        <MudText id="@message.Id" Typo="Typo.body2">@message.Text</MudText>
+                    </div>
+                }
+                else
+                {
+                    <div style=" white-space: pre-wrap;white-space: pre-wrap;max-width: 70%; background-color:  @(message.IsMe ? "#B1B4F1" : "aliceblue"); border-radius: 10px; padding: 10px; overflow-wrap: break-word;">
+                        <MudText id="@message.Id" Typo="Typo.body2" Style="color:#3C2C73">@message.Text</MudText>
+                    </div>
+                }
+
+            </div>
+        }
+
+
+    </div>
+
+    <MudText Style="visibility:hidden" id="ChatViewBottom" Typo="Typo.body2">ChatViewBottom</MudText>
+
+    <MudScrollToTop TopOffset="100"
+                    OnScroll="OnScroll"
+                    Selector="#MudPaperId"
+                    VisibleCssClass="visible absolute"
+                    HiddenCssClass="invisible">
+        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.ArrowUpward" Color="Color">Go to top</MudButton>
+    </MudScrollToTop>
+</MudPaper>
+@code {
+    private List<ChatMessage> messageList = new List<ChatMessage>();
+    private ChatRequestJson chatRequestJson = new ChatRequestJson { model = "gpt-3.5-turbo", messages = new List<Message> { } };
+
+    private class ChatMessage
+    {
+
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public bool IsMe { get; set; }
+    }
+
+    Color Color = Color.Success;
+    private async Task OnScroll(ScrollEventArgs e)
+    {
+        Color = (e.FirstChildBoundingClientRect.Top * -1) switch
+        {
+            var x when x < 500 => Color.Primary,
+            var x when x < 1500 => Color.Secondary,
+            var x when x < 2500 => Color.Tertiary,
+            _ => Color.Error
+        };
+    }
+}
+
+
+
+
+
+@*输入框*@ @*发送按钮*@
+<MudTextField Lines="1" @ref="UserMessageTextField" @bind-Value="userMessage" Label="Message" OnKeyDown="OnUserMessageTextFieldKeyPressd" Clearable="false" Variant="Variant.Filled" Adornment="Adornment.End" AdornmentIcon="@(processing is true?@Icons.Material.Filled.MultipleStop:@Icons.Material.Filled.NearMe )" OnAdornmentClick="SendMessage" AdornmentColor="@(!processing? Color.Primary:Color.Error)" />
+@code
+{
+    private MudTextField<string> UserMessageTextField;
+    private string userMessage;
+    private bool processing = false;
+
+    private async Task OnUserMessageTextFieldKeyPressd(KeyboardEventArgs keyboardEventArgs)
+    {
+        if (keyboardEventArgs.Key is "Enter")
+        {
+            SendMessage();
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (processing)
+            return;
+        if (App.AIGalaxyConnection.State is not HubConnectionState.Connected)
+        {
+            bool? result = await DialogService.ShowMessageBox("Warning", "没有网络!", yesText: "OK!", cancelText: "Cancel");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(userMessage))
+            return;
+
+        messageList.Add(new ChatMessage { Text = userMessage, Id = messageList.Count.ToString(), IsMe = true });
+        chatRequestJson.messages.Add(new Message { role = "user", content = userMessage });
+
+        await InvokeAsync(async () => await UserMessageTextField.Clear());
+
+
+        processing = true;
+        try
+        {
+            await JS.InvokeVoidAsync("ScrollToText", "MudPaperId", "ChatViewBottom");
+
+            var requestJson = JsonSerializer.Serialize(chatRequestJson);
+
+            await App.AIGalaxyConnection.SendAsync(SignalR.SignalRMethod.ServerMethod.AIChat, App.AIGalaxyConnection.ConnectionId, requestJson);
+
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
+
+    }
+}
