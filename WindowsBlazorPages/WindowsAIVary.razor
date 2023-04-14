@@ -76,46 +76,8 @@
             }
         });
 
-        //string url = $"{SignalR.WebsocketUrl}:{SignalR.Port}/{SignalR.AIVaryHub}";
-        //varyHubConnection = new HubConnectionBuilder()
-        //        .WithUrl(url)
-        //        .WithAutomaticReconnect()
-        //        .Build();
-
-        //varyHubConnection = new HubConnectionBuilder()
-        //    .WithUrl(Navigation.ToAbsoluteUri(("/"+SignalR.AIVaryHub)))
-        //    .WithAutomaticReconnect()
-        //    .Build();
-
-
-
-        //try
-        //{
-        //    await varyHubConnection.StartAsync();
-
-        //}
-        //catch (HttpRequestException ex)
-        //{
-        //    bool? result = await DialogService.ShowMessageBox("Warning", ex.Message,
-        //            yesText: "OK!", cancelText: "Cancel");
-        //}
-        //catch (Exception ex)
-        //{
-        //    Debug.WriteLine(ex.Message);
-        //}
 
     }
-
-    //public bool IsConnected =>
-    //    varyHubConnection?.State == HubConnectionState.Connected;
-
-    //public async ValueTask DisposeAsync()
-    //{
-    //    if (varyHubConnection is not null)
-    //    {
-    //        await varyHubConnection.DisposeAsync();
-    //    }
-    //}
 }
 
 
@@ -361,11 +323,13 @@
     </div>
     <br />
     <br />
+    <br />
+    <br />
     <MudGrid Justify="Justify.Center" Spacing="40">
         @foreach (var image in receivedImageModelList)
         {
-            <MudItem xs="7">
-                <MudImage ObjectFit=" ObjectFit.ScaleDown" ObjectPosition="ObjectPosition.Center" Height="200" Width="200" Src="@image.ImageSource" Alt="Örebro Slott" Elevation="25" Class="rounded-lg" />
+            <MudItem xs="4">
+                <MudImage ObjectFit=" ObjectFit.ScaleDown" ObjectPosition="ObjectPosition.Center" Height="350" Width="350" Src="@image.ImageSource" Alt="Örebro Slott" Elevation="25" Class="rounded-lg" />
                 <br />
                 <br />
             </MudItem>

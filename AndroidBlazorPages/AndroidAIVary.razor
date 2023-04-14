@@ -468,39 +468,6 @@
 
         //App.Current.Dispatcher.Dispatch(async () => await Toast.Make($"下载完毕").Show(cancellationToken));
     }
-
-    private async Task SaveAsync()
-    {
-        foreach (var imageModel in receivedImageModelList)
-        {
-            ImageModel temporaryImageModel = imageModel;
-
-            Task.Run(async () =>
-            {
-                try
-                {
-
-                    await DownloadFileFromStream(temporaryImageModel.Name, temporaryImageModel.ImageBytes);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine(ex.Message);
-                }
-            });
-        }
-        //await InvokeAsync(()=>StateHasChanged());
-    }
-
-
-    private async Task DownloadFileFromStream(string imageName, byte[] imageBytes)
-    {
-        var fileStream = new MemoryStream(imageBytes);
-
-
-        using var streamRef = new DotNetStreamReference(stream: fileStream);
-
-        await JS.InvokeVoidAsync("DownloadFileFromStream", imageName, streamRef);
-    }
 }
 
 
