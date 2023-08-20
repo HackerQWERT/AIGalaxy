@@ -1,6 +1,7 @@
 # AIGalaxy
 
 将Service中的SignalR的WebsocketUrl替换为你的服务器IP；
+
 可以使用我的MudBlazorServerMinimalAPI(https://github.com/HackerQWERT/MudBlazorServerMinimalAPI) 作为服务器；
 
 访问Bilibili来观看成品视频：
