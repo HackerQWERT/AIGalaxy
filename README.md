@@ -8,6 +8,7 @@
 可打包为 Msix和 aab或 apk
 
 
+
 将Service中的SignalR的WebsocketUrl替换为你的服务器IP；
 
 可以使用我的MudBlazorServerMinimalAPI(https://github.com/HackerQWERT/MudBlazorServerMinimalAPI) 作为服务器；
